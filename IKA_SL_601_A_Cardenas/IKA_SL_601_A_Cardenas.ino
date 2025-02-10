@@ -4,7 +4,7 @@ float KI = 0.05; //Variable integral
 float KD = 2.2;  //Variable derivativa
 //Se mueven para callibrar
 #include <QTRSensors.h>
-#include <Servo.h>  
+  //  #include <Servo.h>  
 #define RDY 10
 #define GO 11
 
@@ -55,8 +55,10 @@ void setup()
   pinMode(bin1,OUTPUT);
   pinMode(bin2,OUTPUT);
   pinMode(stby,OUTPUT);
+  
   pinMode(RDY,INPUT);
   pinMode(GO,INPUT);
+
   // configure the sensors
   qtr.setTypeAnalog();
   qtr.setSensorPins((const int8_t[]){A0, A1, A2, A3, A4, A5, A6, A7}, SensorCount);
@@ -66,10 +68,11 @@ void setup()
   pinMode(LED_BUILTIN, OUTPUT);
   digitalWrite(LED_BUILTIN, HIGH); // turn on Arduino's LED to indicate we are in calibration mode
 
-  // analogRead() takes about 0.1 ms on an AVR.
-  // 0.1 ms per sensor * 4 samples per sensor read (default) * 6 sensors
-  // * 10 reads per calibrate() call = ~24 ms per calibrate() call.
-  // Call calibrate() 400 times to make calibration take about 10 seconds.
+  /* analogRead() takes about 0.1 ms on an AVR.
+   0.1 ms per sensor * 4 samples per sensor read (default) * 6 sensors
+     10 reads per calibrate() call = ~24 ms per calibrate() call.                 
+    Call calibrate() 400 times to make calibration take about 10 seconds.*/
+
             for (int16_t i = 0; i < 200; i++)
             {
               qtr.calibrate();
