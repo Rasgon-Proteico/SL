@@ -1,4 +1,4 @@
-  #include <ServoTimer2.h> 
+#include <ServoTimer2.h> 
 #include <QTRSensors.h>
 
 #define rdy 11
@@ -18,9 +18,9 @@ ServoTimer2 esc;            // Objeto para el ESC
 bool turbina=false;
 int izq;
 int der;
-float KP = .0015;             //.049  A 40 BASE; 0.088 a 45; 0.098 a 50
-float KI = 0.005;           //0.0067 A 40 BASE;  0.0068 a 45; 0.0082 a 50
-float KD = 1.2;           //0.0085 a 45; 0.0144 a 50;
+float KP = .0018;             //.049  A 40 BASE; 0.088 a 45; 0.098 a 50
+float KI = 0.001;           //0.0067 A 40 BASE;  0.0068 a 45; 0.0082 a 50
+float KD = 4;           //0.0085 a 45; 0.0144 a 50;
 int integral = 0;         // Suma de los errores anteriores (para el componente integral)
 int pE = 0;              // Error de la iteración anterior (para el componente derivativo)
 int pidOutput = 0;      // Salida del PID que ajustará la velocidad de los motores
@@ -54,6 +54,7 @@ void loop() {
 
 if(!turbina){
   turbina=true;
+  delay(3000);}
  // if(digitalRead (rdy)==HIGH){   //original 1, CJ
   init_turbina();               //en el original el método es escrito sin el ciclo for
  //}
@@ -117,7 +118,7 @@ if(!turbina){
   //  }
   //break;
   }
-    }
+    
       }
       //}
   
